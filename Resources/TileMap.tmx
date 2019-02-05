@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="3">
  <tileset firstgid="1" name="tmw_desert_spacing" tilewidth="32" tileheight="32" spacing="1" margin="1" tilecount="48" columns="8">
   <image source="tmw_desert_spacing.png" width="265" height="199"/>
  </tileset>
  <layer id="1" name="Background" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztl8luxCAMht1NVdV21OU+cAJOJI/U93+KZlRb41ohCUlJKPLhlyICNp+XQM4AcFapVKp/qJtBtwV0tzPHUyG7z8qhHMqhHMqhHMqhHMqhHAU4XCMcQTmq4rjIKEdVHF0jHDn5eB/0UUCff8DhC8V4b8WD/d8POgF8zelhxk5Of5TQ28J5p5n3thGO3LOwVo6+EY7cu2KtHK3k4+j+eBn0uECvlXNQTVzOMQs/de5wXw7fWTaWsnH0+ZFznwiQPidS41OKaNPAfH9ZEUcnYpd7L5I5ibiHNd8r6XuKpWe+HXLJ+am70ZhdPkbx4LHK+W5JDjuxl8jWODZ/LG/y7h1xncG1Rvj2bJ4VPtbklsbG8mSFrw6me9KhHQ+/65c4e7jWUUBRbeXWaJeIKfmg57H9kk/D7FDt8b0v2Qflz8K2ezt9I2V9WMj7P1uriP4p11vteYwtr2NeA7wuSjKVjpv0RzUfmLYy7pH/JaL+Dphbyiv1kIXr2cP72sPx/1CqPH0DMqIluQ==
+   eJztmFluwyAQQEm3dEl3tUmXROqmuKtzJB/NR8nROlVtCU1nCGCwoZqPJycRBh4DA2ShlFoIQo/cALcJcWfZ7wJ9fwAeE+LJ0mPFeDwDbwPywngsGQcd3cN2HGLB9QOPe+u2ap7FhvdT8SiJskXj0T5z8cBzq9TikEs82nHH8Si1z/r7Hyp8rnTJ6Z+GeHBrhBqHGLnSp24qHlTOwjF6Vd1z5jvj4VM3rouKRSy+ItZNxULg2QPGCPitjtEWbickx8ApYhKo7n3kgdvJhTPxSArsMY3A7gAeMbjuYUz68AjJiXgkhXikxX/w+DmfUWeb3Dy4WIiHeIiHeLgwArYc2e7JY+TQ3gFw6MiRowecd2vOY/LrUs0Arm827bVl50qtL+Bp4srToz3/G+4h1TSQR+iyFKZ7GTW/UvWg5tdOE6tZRh7UegePCv/3k6OHKWel6sHd96k5pbcHOajetBfMPTwgb61d9xyfPSjWnuBTb5f2ztXf3A/jXpn2iUvPel3x3YNCze1QdO1HLh626/neomxMYF7VOFfoaz7U+hsCPTZd19+Q6DnmG8vw/4I=
   </data>
  </layer>
+ <objectgroup id="5" name="Objects">
+  <object id="2" name="SpawnPoint" x="156" y="496"/>
+ </objectgroup>
 </map>

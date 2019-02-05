@@ -58,6 +58,27 @@ bool HelloWorld::init()
 	_background = _tileMap->layerNamed("Background");
 	_background->retain();
 	this->addChild(_tileMap);
+
+	///////////////
+	CCTMXObjectGroup *objectGroup = _tileMap->objectGroupNamed("Objects");
+
+	if (objectGroup == NULL){
+		CCLog("tile map has no objects object layer");
+		return false;
+	}
+
+	CCDictionary *spawnPoint = objectGroup->objectNamed("SpawnPoint");
+
+	int x = ((CCString)*spawnPoint->valueForKey("x")).intValue();
+	int y = ((CCString)*spawnPoint->valueForKey("y")).intValue();
+
+	_player = new CCSprite();
+	_player->initWithFile("Player.png");
+	_player->setPosition(ccp(x, y));
+
+	this->addChild(_player);
+	this->setViewPointCenter(_player->getPosition());
+
     return true;
 }
 
@@ -72,4 +93,21 @@ void HelloWorld::menuCloseCallback(CCObject* pSender)
     exit(0);
 #endif
 #endif
+}
+
+void HelloWorld::setViewPointCenter(CCPoint position)
+{
+	 CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    
+    int x = MAX(position.x, winSize.width/2);
+    int y = MAX(position.y, winSize.height/2);
+    x = MIN(x, (_tileMap->getMapSize().width * this->_tileMap->getTileSize().width) - winSize.width / 2);
+    y = MIN(y, (_tileMap->getMapSize().height * _tileMap->getTileSize().height) - winSize.height/2);
+    CCPoint actualPosition = ccp(x, y);
+    
+    CCPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
+    CCPoint viewPoint = ccpSub(centerOfView, actualPosition);
+    // this->setPosition(viewPoint);
+	this->runAction(CCMoveTo::create(1, viewPoint));
+	this->runAction(CCSequence::create(CCScaleTo::create(0.5, 0.5), CCScaleTo::create(0.5, 1),NULL));
 }

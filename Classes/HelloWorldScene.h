@@ -21,6 +21,10 @@ public:
 
 	CCTMXTiledMap *_tileMap;
 	CCTMXLayer *_background;
+
+	CCSprite *_player;
+	
+	void setViewPointCenter(CCPoint position);
 };
 
 #endif // __HELLOWORLD_SCENE_H__
