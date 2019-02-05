@@ -51,7 +51,7 @@ bool HelloWorld::init()
     /////////////////////////////
     // 3. add your codes below...
 
-
+	firstLoad = true;
 	_tileMap = CCTMXTiledMap::create("TileMap.tmx");
 	_tileMap->retain();
 
@@ -79,6 +79,8 @@ bool HelloWorld::init()
 	this->addChild(_player);
 	this->setViewPointCenter(_player->getPosition());
 
+	
+	this->setTouchEnabled(true);
     return true;
 }
 
@@ -107,7 +109,65 @@ void HelloWorld::setViewPointCenter(CCPoint position)
     
     CCPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
     CCPoint viewPoint = ccpSub(centerOfView, actualPosition);
-    // this->setPosition(viewPoint);
-	this->runAction(CCMoveTo::create(1, viewPoint));
-	this->runAction(CCSequence::create(CCScaleTo::create(0.5, 0.5), CCScaleTo::create(0.5, 1),NULL));
+	if (firstLoad){
+		this->runAction(CCMoveTo::create(1, viewPoint));
+		this->runAction(CCSequence::create(CCScaleTo::create(0.5, 0.5), CCScaleTo::create(0.5, 1), NULL));
+		firstLoad = false;
+	}
+	else{
+		this->setPosition(viewPoint);
+	}
+}
+
+#pragma mark - handle touches
+
+void HelloWorld::registerWithTouchDispatcher() {
+	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+}
+
+bool HelloWorld::ccTouchBegan(CCTouch *touch, CCEvent *event)
+{
+	return true;
+}
+
+void HelloWorld::setPlayerPosition(CCPoint position) {
+	_player->setPosition(position);
+}
+
+void HelloWorld::ccTouchEnded(CCTouch *touch, CCEvent *event)
+{
+	CCPoint touchLocation = touch->getLocationInView();
+	touchLocation = CCDirector::sharedDirector()->convertToGL(touchLocation);
+	touchLocation = this->convertToNodeSpace(touchLocation);
+
+	CCPoint playerPos = _player->getPosition();
+	CCPoint diff = ccpSub(touchLocation, playerPos);
+
+	if (abs(diff.x) > abs(diff.y)) {
+		if (diff.x > 0) {
+			playerPos.x += _tileMap->getTileSize().width;
+		}
+		else {
+			playerPos.x -= _tileMap->getTileSize().width;
+		}
+	}
+	else {
+		if (diff.y > 0) {
+			playerPos.y += _tileMap->getTileSize().height;
+		}
+		else {
+			playerPos.y -= _tileMap->getTileSize().height;
+		}
+	}
+
+	// safety check on the bounds of the map
+	if (playerPos.x <= (_tileMap->getMapSize().width * _tileMap->getTileSize().width) &&
+		playerPos.y <= (_tileMap->getMapSize().height * _tileMap->getTileSize().height) &&
+		playerPos.y >= 0 &&
+		playerPos.x >= 0)
+	{
+		this->setPlayerPosition(playerPos);
+	}
+
+	this->setViewPointCenter(_player->getPosition());
 }

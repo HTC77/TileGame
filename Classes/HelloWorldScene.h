@@ -25,6 +25,15 @@ public:
 	CCSprite *_player;
 	
 	void setViewPointCenter(CCPoint position);
+	
+	void registerWithTouchDispatcher();
+
+	void setPlayerPosition(CCPoint position);
+
+	bool ccTouchBegan(CCTouch *touch, CCEvent *event);
+
+	void ccTouchEnded(CCTouch *touch, CCEvent *event);
+	bool firstLoad;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
