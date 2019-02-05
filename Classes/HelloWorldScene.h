@@ -2,6 +2,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+USING_NS_CC;
 
 class HelloWorld : public cocos2d::CCLayer
 {
@@ -17,6 +18,9 @@ public:
     
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);
+
+	CCTMXTiledMap *_tileMap;
+	CCTMXLayer *_background;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
