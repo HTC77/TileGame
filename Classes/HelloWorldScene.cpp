@@ -11,7 +11,10 @@ CCScene* HelloWorld::scene()
 
     // add layer as a child to scene
     scene->addChild(layer);
-
+	HUDLayer *hud = new HUDLayer();
+	hud->init();
+	scene->addChild(hud);
+	layer->_hud = hud;
     // return the scene
     return scene;
 }
@@ -50,7 +53,7 @@ bool HelloWorld::init()
 
     /////////////////////////////
     // 3. add your codes below...
-
+	_numCollected = 0;
 	_tileMap = CCTMXTiledMap::create("TileMap.tmx");
 	_tileMap->retain();
 
@@ -154,6 +157,8 @@ void HelloWorld::setPlayerPosition(CCPoint position) {
 			if (collectible && (collectible->compare("True") == 0)) {
 				_meta->removeTileAt(tileCoord);
 				_foreground->removeTileAt(tileCoord);
+				_numCollected++;
+				_hud->numCollectedChanged(_numCollected);
 			}
 		}
 	}

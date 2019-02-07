@@ -2,6 +2,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+#include "HudLayer.h"
 USING_NS_CC;
 
 class HelloWorld : public cocos2d::CCLayer
@@ -39,6 +40,9 @@ public:
 	CCPoint tileCoordForPosition(CCPoint position);
 	
 	CCTMXLayer *_foreground;
+
+	HUDLayer *_hud;
+	int _numCollected;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
