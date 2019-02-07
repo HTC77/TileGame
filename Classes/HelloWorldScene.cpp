@@ -51,13 +51,17 @@ bool HelloWorld::init()
     /////////////////////////////
     // 3. add your codes below...
 
-	firstLoad = true;
 	_tileMap = CCTMXTiledMap::create("TileMap.tmx");
 	_tileMap->retain();
 
 	_background = _tileMap->layerNamed("Background");
-	_background->retain();
+	_background->retain();	
+	_meta = _tileMap->layerNamed("Meta");
+	_meta->setVisible(false);
+	_meta->retain();
 	this->addChild(_tileMap);
+
+
 
 	///////////////
 	CCTMXObjectGroup *objectGroup = _tileMap->objectGroupNamed("Objects");
@@ -109,14 +113,8 @@ void HelloWorld::setViewPointCenter(CCPoint position)
     
     CCPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
     CCPoint viewPoint = ccpSub(centerOfView, actualPosition);
-	if (firstLoad){
-		this->runAction(CCMoveTo::create(1, viewPoint));
-		this->runAction(CCSequence::create(CCScaleTo::create(0.5, 0.5), CCScaleTo::create(0.5, 1), NULL));
-		firstLoad = false;
-	}
-	else{
-		this->setPosition(viewPoint);
-	}
+
+	this->setPosition(viewPoint);
 }
 
 #pragma mark - handle touches
@@ -130,7 +128,27 @@ bool HelloWorld::ccTouchBegan(CCTouch *touch, CCEvent *event)
 	return true;
 }
 
+CCPoint HelloWorld::tileCoordForPosition(CCPoint position)
+{
+	int x = position.x / _tileMap->getTileSize().width;
+	int y = ((_tileMap->getMapSize().height * _tileMap->getTileSize().height) - position.y) / _tileMap->getTileSize().height;
+	return ccp(x, y);	
+}
+
+
 void HelloWorld::setPlayerPosition(CCPoint position) {
+	CCPoint tileCoord = this->tileCoordForPosition(position);
+	int tileGid = 0;
+	tileGid = static_cast<int>(_meta->tileGIDAt(tileCoord));
+	if (tileGid) {
+		CCDictionary *properties = _tileMap->propertiesForGID(tileGid);
+		if (properties) {
+			CCString *collision = (CCString*)properties->valueForKey("Collidable");
+			if (collision && (collision->compare("True") == 0)) {
+				return;
+			}
+		}
+	}
 	_player->setPosition(position);
 }
 

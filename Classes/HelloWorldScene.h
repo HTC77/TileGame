@@ -33,7 +33,11 @@ public:
 	bool ccTouchBegan(CCTouch *touch, CCEvent *event);
 
 	void ccTouchEnded(CCTouch *touch, CCEvent *event);
-	bool firstLoad;
+
+	CCTMXLayer* _meta;
+
+	CCPoint tileCoordForPosition(CCPoint position);
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__
