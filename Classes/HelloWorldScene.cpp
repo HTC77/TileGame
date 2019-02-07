@@ -1,4 +1,5 @@
 #include "HelloWorldScene.h"
+#include "SimpleAudioEngine.h"
 
 
 CCScene* HelloWorld::scene()
@@ -22,6 +23,10 @@ CCScene* HelloWorld::scene()
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("pickup.mp3");
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("hit.mp3");
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("move.mp3");
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("TileMap.mp3");
     //////////////////////////////
     // 1. super init first
     if ( !CCLayer::init() )
@@ -150,11 +155,13 @@ void HelloWorld::setPlayerPosition(CCPoint position) {
 		if (properties) {
 			CCString *collision = (CCString*)properties->valueForKey("Collidable");
 			if (collision && (collision->compare("True") == 0)) {
+				CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("hit.mp3");
 				return;
 			}
 			CCString *collectible = new CCString();
 			*collectible = *properties->valueForKey("Collectable");
 			if (collectible && (collectible->compare("True") == 0)) {
+				CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("pickup.mp3");
 				_meta->removeTileAt(tileCoord);
 				_foreground->removeTileAt(tileCoord);
 				_numCollected++;
@@ -162,6 +169,7 @@ void HelloWorld::setPlayerPosition(CCPoint position) {
 			}
 		}
 	}
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("move.mp3");
 	_player->setPosition(position);
 }
 
