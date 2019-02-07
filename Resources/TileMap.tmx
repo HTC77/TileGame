@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="3">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="3">
  <tileset firstgid="1" name="tmw_desert_spacing" tilewidth="32" tileheight="32" spacing="1" margin="1" tilecount="48" columns="8">
   <image source="tmw_desert_spacing.png" width="265" height="199"/>
  </tileset>
@@ -15,21 +15,26 @@
   </tile>
   <tile id="1" type="bool">
    <properties>
-    <property name="Collectibles" value="True"/>
+    <property name="Collectable" value="True"/>
    </properties>
   </tile>
  </tileset>
  <layer id="1" name="Background" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztmFluwyAQQEm3dEl3tUmXROqmuKtzJB/NR8nROlVtCU1nCGCwoZqPJycRBh4DA2ShlFoIQo/cALcJcWfZ7wJ9fwAeE+LJ0mPFeDwDbwPywngsGQcd3cN2HGLB9QOPe+u2ap7FhvdT8SiJskXj0T5z8cBzq9TikEs82nHH8Si1z/r7Hyp8rnTJ6Z+GeHBrhBqHGLnSp24qHlTOwjF6Vd1z5jvj4VM3rouKRSy+ItZNxULg2QPGCPitjtEWbickx8ApYhKo7n3kgdvJhTPxSArsMY3A7gAeMbjuYUz68AjJiXgkhXikxX/w+DmfUWeb3Dy4WIiHeIiHeLgwArYc2e7JY+TQ3gFw6MiRowecd2vOY/LrUs0Arm827bVl50qtL+Bp4srToz3/G+4h1TSQR+iyFKZ7GTW/UvWg5tdOE6tZRh7UegePCv/3k6OHKWel6sHd96k5pbcHOajetBfMPTwgb61d9xyfPSjWnuBTb5f2ztXf3A/jXpn2iUvPel3x3YNCze1QdO1HLh626/neomxMYF7VOFfoaz7U+hsCPTZd19+Q6DnmG8vw/4I=
+   eJztmulugzAMgNPdR3drKzs6dmrspI/Eo/EofbS5GpEiz4YkxBA2fnyirdIkn504sC5VSt0Kkgr3LzFfPGfqM8n4DC1mrlwCVxFxbRn/DL2/Bx4i4tEy/gvG4wl465FnxuOFcTAxPWzjIAU3Dxx37baorlnD92PxyIm2WeWhr0PxwGsrN/IwlHzouON85MZr8/sfKlyt1LjU9M+afHB7hIqDRK306ZvKB1WzcI5eVfua+c54+PSN+6JyIcWXYN9ULkZ4toBtBHxWSoyFxwnJAXCEmAbqewd54HGGwvHoERXYYybAZg8eElx0EBNfj0yIpnEPBfOBn7lccB1L0qNLRo+4+Aseq/sz6t6myeOuBbZzc+mTy4VNPnJHfOJs228bj5gYPeLiv3r4/P4xAdYcWe8oHxOH8XaBPUf2HT3gfrfkPKY/LkUCcHOzGU+3nSu1PIVrHeeeHvr+v+Y5pJgZHvp3PB+P0G0p6p7LzPUVmwfer9T62qhylUTsgaH2O3gU+G8/0nOT8KirWbF6cM/7ScN4UIPKprNg7uEBdWvpeub4nEFSZ4JPv7bjUWf4ifpd+yHuRd05cWbhQfXriu8ZpF3bru1QUPNIFf8/LClqMwSP1Wvb/Xxj0VYSWFclrhXmng+1//rAzE3b/dcnZo35BuRQAy8=
   </data>
  </layer>
  <objectgroup id="5" name="Objects">
   <object id="2" name="SpawnPoint" x="156" y="496"/>
  </objectgroup>
+ <layer id="7" name="Foreground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt10EOwBAQAEA/6f9/2WtDutFIWTFzISGL5WBLAYB/XS9tPR71o3hRbMjC2wQATrHLv+dZQ6zc89e1e+fPPtMu9z7DSC4y5TGq3WnJDwAAAORxA0AIAuk=
+  </data>
+ </layer>
  <layer id="6" name="Meta" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt08sJgDAQBcBtyY4szVIszYsRCYofyEZkBh7CHuI+JRGQa4iY1sydM5bc3FuPDj3qfctsn6rHdOc7tKLHNvt8j4O7sN+/PH/Xo/5fT3Ky25uzL3vEwUyPvB5ZWr4rswcAAAAAAADwHQsPU5qc
+   eJztmNENwyAMRL1SmKijZZSO1p/SOsRQk2Kw23uSlWAhuDMiCiSyJRmPP5pEZ81SbuR8mtwvsRHtz7gvjlsOrq9W/y2Yj0b9Q/ko9eYcj8LHrqmDFfDxyh185H1VPklo196l/lJfnmv5EPYC15+f7tej10e5Xj1R0XZl7I8+SMhF95Hebfc+ZmE510wfAAAAADgS5V6DnyFWau6dW9t/tqco6z6Db2rhqY6tszs4g/oAoAN7BViw+n9uFN58XNXizQcAYAz/tK+9e01U/9Z6uevQEEEjiM0DOfekkg==
   </data>
  </layer>
 </map>

@@ -55,7 +55,9 @@ bool HelloWorld::init()
 	_tileMap->retain();
 
 	_background = _tileMap->layerNamed("Background");
-	_background->retain();	
+	_background->retain();
+	_foreground = _tileMap->layerNamed("Foreground");
+
 	_meta = _tileMap->layerNamed("Meta");
 	_meta->setVisible(false);
 	_meta->retain();
@@ -146,6 +148,12 @@ void HelloWorld::setPlayerPosition(CCPoint position) {
 			CCString *collision = (CCString*)properties->valueForKey("Collidable");
 			if (collision && (collision->compare("True") == 0)) {
 				return;
+			}
+			CCString *collectible = new CCString();
+			*collectible = *properties->valueForKey("Collectable");
+			if (collectible && (collectible->compare("True") == 0)) {
+				_meta->removeTileAt(tileCoord);
+				_foreground->removeTileAt(tileCoord);
 			}
 		}
 	}

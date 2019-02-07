@@ -37,7 +37,8 @@ public:
 	CCTMXLayer* _meta;
 
 	CCPoint tileCoordForPosition(CCPoint position);
-
+	
+	CCTMXLayer *_foreground;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
